@@ -17,7 +17,8 @@ class HeaderPage extends Page {
     }
 
     public async search(text: string) {
-        await this.inputSearch.click()
+        await this.inputSearch.isDisplayed()
+        this.inputSearch.click()
         this.inputSearch.setValue('')
         this.inputSearch.setValue(text)
     }
@@ -42,6 +43,7 @@ class HeaderPage extends Page {
                 return false
             }
         }, { timeout: resultsTimeout, interval: 200 })
+        await browser.pause(200)
         return this.searchResults
     }
 }
