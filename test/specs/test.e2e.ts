@@ -1,15 +1,18 @@
 import { expect } from '@wdio/globals'
-import LoginPage from '../pageobjects/login.page.js'
-import SecurePage from '../pageobjects/secure.page.js'
+import LoadingPage from '../pageobjects/loading.page.js'
+import HeaderPage from '../pageobjects/header.page.js'
 
-describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        await LoginPage.open()
-
-        await LoginPage.login('tomsmith', 'SuperSecretPassword!')
-        await expect(SecurePage.flashAlert).toBeExisting()
-        await expect(SecurePage.flashAlert).toHaveTextContaining(
-            'You logged into a secure area!')
+describe('Prestashop store', () => {
+    it('should load the home page', async () => {
+        LoadingPage.open()
+        await expect(LoadingPage.loadingIndicator).not.toBeDisplayed()
+        await LoadingPage.switchToNewFrame()
+    })
+    
+    it('should find expected product via search field', async () => {
+        const searchPhrase = 'HUMMINGBIRD PRINTED T-SHIRT'
+        
+        await HeaderPage.inputSearch.click()
+        await HeaderPage.inputSearch.setValue(searchPhrase)
     })
 })
-
