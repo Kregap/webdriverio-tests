@@ -9,10 +9,15 @@ describe('Prestashop store', () => {
         await LoadingPage.switchToNewFrame()
     })
     
-    it('should find expected product via search field', async () => {
-        const searchPhrase = 'HUMMINGBIRD PRINTED T-SHIRT'
+    it('should find expected product using search field', async () => {
+        const searchPhrase = 'hummingbird'
         
-        await HeaderPage.inputSearch.click()
-        await HeaderPage.inputSearch.setValue(searchPhrase)
+        await HeaderPage.search(searchPhrase)
+        const results = await HeaderPage.getSearchResults()
+        results.forEach ( async (result) => {
+            await expect(result).toHaveText(
+                await expect.stringContaining('test')
+            )
+        })
     })
 })
