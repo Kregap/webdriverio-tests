@@ -42,7 +42,6 @@ class HeaderPage extends Page {
                 return false
             }
         }, { timeout: resultsTimeout, interval: 200 })
-        // return this.searchResults.map( (el) => el.getText() )
         return this.searchResults
     }
 }
