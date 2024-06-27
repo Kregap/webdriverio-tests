@@ -1,0 +1,17 @@
+{
+  "name": "webdriver-test-automation",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^8.39.0",
+    "@wdio/local-runner": "^8.39.0",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2",
+    "wdio-html-nice-reporter": "^8.1.6",
+    "wdio-wait-for": "^3.0.11"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.ts"
+  }
+}
