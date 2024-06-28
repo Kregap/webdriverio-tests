@@ -17,6 +17,10 @@ class CartModalPage extends Page {
     public get productsQuantity () {
         return $('#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > p.cart-products-count')
     }
+    // TODO: Get better selector!
+    public get btnCheckout () {
+        return $('#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > a')
+    }
 }
 
 export default new CartModalPage()

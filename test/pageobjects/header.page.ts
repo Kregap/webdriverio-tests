@@ -17,7 +17,7 @@ class HeaderPage extends Page {
     }
 
     public async search(text: string) {
-        await this.inputSearch.isDisplayed()
+        await this.inputSearch.waitForDisplayed()
         this.inputSearch.click()
         this.inputSearch.setValue('')
         this.inputSearch.setValue(text)

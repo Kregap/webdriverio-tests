@@ -1,3 +1,5 @@
+Tests are using [WebDriverIO](https://webdriver.io/) with [Mocha](https://mochajs.org/).
+
 # Requirements
 Node.js 16.x or higher is installed
 
@@ -22,6 +24,8 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 ```
 
 # ToDos
+- [ ] Use data models for client and product.
+- [ ] Address hardcoded timeouts.
 - [ ] Evaluate usage of a Node version manager, e.g. [NVM](https://github.com/nvm-sh/nvm).
 - [ ] Evaluate proposed by WebDriverIO testing frameworks (Mocha, Jasmine, Cucumber - all with or without Serenity/JS).
 - [ ] Evaluate available reporters.

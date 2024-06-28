@@ -16,6 +16,8 @@ class LoadingPage extends Page {
     public async switchToNewFrame () {
         await this.newFrame.waitForExist({ timeout: 2000 })
         await browser.switchToFrame(0)
+        // TODO: Remove this pause/sleep - right now without often next action on page fails.
+        await browser.pause(500)
     }
 }
 
