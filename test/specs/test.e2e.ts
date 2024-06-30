@@ -5,9 +5,13 @@ import ProductPage from '../pageobjects/product.page.js'
 import CartModalPage from '../pageobjects/cartmodal.page.js'
 import CartPage from '../pageobjects/cart.page.js'
 import CheckoutPage from '../pageobjects/checkout.page.js'
+import ConfirmationPage from '../pageobjects/confirmation.page.js'
 
 describe('PrestaShop store', () => {
     const productName = 'Hummingbird cushion'
+    const fullProductName = 'Hummingbird cushion (Color: White)'
+    const price = '€22.68'
+    const quantity = '1'
 
     it('should load the home page', async () => {
         const timeoutToLoadDemoPage: number = 10000
@@ -17,6 +21,7 @@ describe('PrestaShop store', () => {
     })
     
     it('should allow searching for specific product', async () => {
+        // TODO: Significant failure rate at this step - fix it!
         await HeaderPage.search(productName)
         const results = await HeaderPage.getSearchResults()
         await results.forEach ( async (result) => {
@@ -83,5 +88,22 @@ describe('PrestaShop store', () => {
         await expect(CheckoutPage.radioPaymentThird).toHaveText(
             expect.stringMatching(expectedPaymentOptions[2])
         )
+    })
+    
+    it('should allow completing purchase', async () => {
+        await CheckoutPage.clickPaymentRadio(0)
+        await CheckoutPage.checkboxTermsAndConditionsPayment.click()
+        await CheckoutPage.btnPlaceOrder.click()
+
+        await ConfirmationPage.orderItemsSection.waitForDisplayed()
+        // TODO: Use defined class object.
+        const products = await ConfirmationPage.getOrders()
+        // TODO: Check total price.
+        // TODO: Represent expected cart state in custom object.
+
+        await expect(products.length).toEqual(1)
+        await expect(products[0]['details']).toEqual(fullProductName)
+        await expect(products[0]['quantity']).toEqual(quantity)
+        await expect(products[0]['totalPrice']).toEqual(price)
     })
 })

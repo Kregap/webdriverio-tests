@@ -61,8 +61,13 @@ class CheckoutPage extends Page {
         return $('#conditions-to-approve')
     }
     // TODO: Get better selector!
-    public btnPlaceOrder () {
+    public get btnPlaceOrder () {
         return $('#payment-confirmation > div.ps-shown-by-js > button')
+    }
+
+    // TODO: This should be related to radio buttons selectors directly.
+    public async clickPaymentRadio (id: number) {
+        await $('#payment-option-' + ((id + 1) as unknown as string)).click()
     }
 }
 
